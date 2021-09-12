@@ -11,52 +11,49 @@ import java.util.ArrayList;
 public class Library {
 
     private ArrayList<Book> listOfAllBooks;
-    private ArrayList<Book> listOfBooksAvailable;
-    private ArrayList<Book> listOfBorrowedBooks;
+    private ArrayList<Borrowing> listOfBorrowings;
+    private ArrayList<Boolean> areThereAnyBooksBorrowed;
 
-    public ArrayList<Book> getListOfBooksAvailable() {
-        return listOfBooksAvailable;
-    }
-
-    public ArrayList<Book> getListOfBorrowedBooks() {
-        return listOfBorrowedBooks;
-    }
 
     public ArrayList<Book> getListOfAllBooks() {
         return listOfAllBooks;
     }
 
+    public ArrayList<Borrowing> getListOfBorrowings() {
+        return listOfBorrowings;
+    }
+
+    public ArrayList<Boolean> getAreThereAnyBooksBorrowed() {
+        return areThereAnyBooksBorrowed;
+    }
+
     public Library() {
         this.listOfAllBooks = new ArrayList<>();
-        this.listOfBooksAvailable = new ArrayList<>();
-        this.listOfBorrowedBooks = new ArrayList<>();
+        this.listOfBorrowings = new ArrayList<>();
+        this.areThereAnyBooksBorrowed = new ArrayList<>();
     }
 
 
 
     void addNewBook(Book book) throws IOException {
         this.listOfAllBooks.add(book);
-        this.listOfBooksAvailable.add(book);
-        }
+    }
 
     void removeBook(Book book) {
-        this.listOfAllBooks.remove(book);
-        this.listOfBooksAvailable.remove(book);
+//        this.listOfAllBooks.remove(book);
+        book.setRemoved(true);
     }
 
-    void borrowBook(Book book, Customer customer) {
-        Borrowing b = new Borrowing();
-        listOfBooksAvailable.remove(book);
-        listOfBorrowedBooks.add(book);
-        customer.getBooksBorrowedByCustomer().add(book);
-        }
+    void addBorrowingRecord(Book book, Customer customer) {
+        book.setBorrowed(true);
+        this.areThereAnyBooksBorrowed.add(true);
+        book.setBorrowingCustomer(customer);
+        book.getBorrowingCustomer().getBooksBorrowedByCustomer().add(book);
+    }
 
-    void returnBook(Book book, Customer customer) {
-        Return r = new Return();
-        listOfBooksAvailable.add(book);
-        listOfBorrowedBooks.remove(book);
-        customer.getBooksBorrowedByCustomer().remove(book);
+    void addReturnRecord(Book book) {
+        book.setBorrowed(false);
+        this.areThereAnyBooksBorrowed.remove(true);
+        book.getBorrowingCustomer().getBooksBorrowedByCustomer().remove(book);
     }
 }
-
-

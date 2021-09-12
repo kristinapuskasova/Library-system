@@ -21,7 +21,12 @@ public class ScientificBook extends Book {
 
     @Override
     public String toString() {
-        String s = "Title: " + this.getTitle() + "\nAuthor: " + this.getAuthor() + "\nPage Count: " + this.getPageCount() + "\nScientific Field: " + this.scientificField;
+        String s;
+        if (this.isBorrowed() == false) {
+            s = "Title: " + this.getTitle() + "\nAuthor: " + this.getAuthor() + "\nPage Count: " + this.getPageCount() + "\nScientific Field: " + this.scientificField + "\nStatus: Currently available";
+        } else {
+            s = "Title: " + this.getTitle() + "\nAuthor: " + this.getAuthor() + "\nPage Count: " + this.getPageCount() + "\nScientific Field: " + this.scientificField + "\nStatus: Currently unavailable" ;
+        }
         return s;
     }
 

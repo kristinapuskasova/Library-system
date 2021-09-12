@@ -22,7 +22,12 @@ public class ForeignBook extends Book {
 
     @Override
     public String toString() {
-        String s = "Title: " + this.getTitle() + "\nAuthor: " + this.getAuthor() + "\nPage Count: " + this.getPageCount() + "\nLanguage: " + this.language;
+        String s;
+        if (this.isBorrowed() == false) {
+            s = "Title: " + this.getTitle() + "\nAuthor: " + this.getAuthor() + "\nPage Count: " + this.getPageCount() + "\nStatus: Currently available" + "\nLanguage: " + this.language;
+        } else {
+            s = "Title: " + this.getTitle() + "\nAuthor: " + this.getAuthor() + "\nPage Count: " + this.getPageCount() + "\nStatus: Currently unavailable" + "\nLanguage: " + this.language;
+        }
         return s;
     }
 }

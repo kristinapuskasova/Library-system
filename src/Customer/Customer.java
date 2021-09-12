@@ -13,6 +13,22 @@ public class Customer {
     private Address address;
     private ArrayList<Book> booksBorrowedByCustomer = new ArrayList<>();
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public void setAddress(Address address) {
         this.address = address;
     }
@@ -53,11 +69,13 @@ public class Customer {
             System.out.print("Street: ");
             this.streetName = scanner.nextLine();
             System.out.print("Street number: ");
+
             this.streetNumber = Integer.parseInt(scanner.nextLine());
             System.out.print("City: ");
             this.city = scanner.nextLine();
             System.out.print("Country: ");
             this.country = scanner.nextLine();
+            System.out.println();
 
         }
 
